@@ -1,7 +1,5 @@
 var Task = function(data){
-    console.log(data);
-    this.data = data;
-    this.name = data.get(1).name;
+    this.name = data.name;
     this.completed = false;
 }
 
@@ -11,8 +9,8 @@ Task.prototype.complete = function(){
 }
 
 Task.prototype.save = function(){
-    this.data.save(this);
-
+    console.log('completing Task: ' + this.name);
+    this.completed = true;
 }
 
 module.exports = Task;

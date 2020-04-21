@@ -2,14 +2,14 @@ var repo = function(){
     var db = {};
 
     var get = function (id){
-        console.log(`Getting task ${id}`);
+        console.log(`Getting project ${id}`);
         return {
-            name: 'new task from db'
+            name: 'new project from db'
         }
     }
 
-    var save = function(task) {
-        console.log(`Saving ${task.name} to the db`);
+    var save = function(project) {
+        console.log(`Saving ${project.name} to the db`);
     }
     return {
         get:get,
