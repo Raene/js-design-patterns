@@ -1,14 +1,14 @@
-.. _Title: Behavioral design patterns
-.. tip:: Concerned with the assingment of responsibilities between objects and how they communicate
+Behavioral design patterns
+Concerned with the assingment of responsibilities between objects and how they communicate
 
-.. _Title: First we create our services.
+First we create our services.
 for the purpose of this, we would limit the functionality of the services to just basic updating messages to the console. 
 
-.. _Title: ObserverList()
+ObserverList()
 ObserverList just like the name suggests is a function that holds our registered observers in an array.
 it has 3 prototype functions attached to it: count(),add(),get()
 These funcions are pretty self explanatory.
 
-.. _Title: ObservableTask()
+ObservableTask()
 This function is a wrapper that wraps around our  Task function.
 It also instantiates an object of ObserverList for use in its prototype functions.
