@@ -10,11 +10,27 @@ var repo = {
     save:function(task) {
         repo.tasks[task.id] = task;
         console.log(`Saving ${task.name} to the db`);
+    },
+    replay: function() {
+        for (var i = 0; i < repo.commands.length; i++) {
+             var command = repo.commands[i];
+            
+             repo.executeNolog(command.name, command.obj);
+        }
+    }
+}
+
+repo.executeNolog = function(name) {
+    var args = Array.prototype.slice.call(arguments, 1);
+    
+    //Nolog is basically execute() without logging to commands array in order to prevent an infinite loop
+    if(repo[name]) {
+        return repo[name].apply(repo, args);
     }
 }
 
 repo.execute = function(name){
-    var args = Array.prototype.slice.call(arguments, 1)
+    var args = Array.prototype.slice.call(arguments, 1);
 
     repo.commands.push({
         name: name,
@@ -34,4 +50,27 @@ repo.execute('save',{
     completed: false
 });
 
-// module.exports = repo();
+repo.execute('save',{
+    id: 2,
+    name: 'Task 2',
+    completed: false
+});
+
+repo.execute('save',{
+    id: 3,
+    name: 'Task 3',
+    completed: false
+});
+
+repo.execute('save',{
+    id: 4,
+    name: 'Task 4',
+    completed: false
+});
+
+console.log(repo.tasks);
+// delete everything in the repo to test the replay function
+repo.tasks = {};
+console.log(repo.tasks);
+//calling replay would rerun the objects saved in the commands array
+repo.replay();
