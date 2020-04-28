@@ -1,6 +1,7 @@
 var repoFactory = function () {
     this.getRepo = function (repoType) {
         if (repoType === 'task') {
+            //cache to prevent calling an object that exists already
             if (this.taskRepo) {
                 console.log('From Cache');
                 return this.taskRepo;
